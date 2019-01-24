@@ -9,8 +9,7 @@ Authors: Shixin Yan and Weizhou Liu.
 import random
 
 def main():
-    setting_up_letter()
-    get_a_random_letter_from_a_text_file()
+    check_letter()
 
 def setting_up_letter():
     print('I will choose a random secret word from a dictionary. You set the MINIMUM length of that word.')
@@ -24,9 +23,31 @@ def get_a_random_letter_from_a_text_file():
         f.readline()
         string = f.read()
     word = string.split()
-    MINIMUM_length, HP = setting_up_letter()
-    r = random.randrange(MINIMUM_length, len(word))
-    item = word[r]
+    MINIMUM_length,HP= setting_up_letter()
+    while True:
+        r = random.randrange(0, len(word))
+        item = word[r]
+        if len(item)>=MINIMUM_length:
+            break
+    ret = ''
+    for k in range(len(item)):
+        ret = ret + '- '
+    print('Here is what you currently know about the secret word:')
+    print(ret)
+    return item
+
+def receive_letter_from_user():
+    letter=input('What letter do you want to try?')
+    return letter
+
+def check_letter():
+    item=get_a_random_letter_from_a_text_file()
+    letter=receive_letter_from_user()
+    for k in range(len(item)):
+        if item[k]==letter:
+
+
+
 
 
 
